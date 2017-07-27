@@ -116,6 +116,7 @@ export class TagInputComponent implements ControlValueAccessor, OnDestroy, OnIni
   @Input() autocompleteSelectFirstItem: boolean = true;
   @Input() pasteSplitPattern: string = ',';
   @Input() placeholder: string = 'Add a tag';
+  @Input() searchFilterPredicate: (string) => boolean = (item) => true;
   @Output('addTag') addTag: EventEmitter<string> = new EventEmitter<string>();
   @Output('removeTag') removeTag: EventEmitter<string> = new EventEmitter<string>();
   @ViewChild('tagInputElement') tagInputElement: ElementRef;
@@ -158,7 +159,9 @@ export class TagInputComponent implements ControlValueAccessor, OnDestroy, OnIni
 
     this.tagInputSubscription = this.tagInputField.valueChanges
     .do(value => {
-      this.autocompleteResults = this.autocompleteItems.filter(item => {
+      this.autocompleteResults = this.autocompleteItems
+      .filter(item => this.searchFilterPredicate(value))
+      .filter(item => {
         /**
          * _isTagUnique makes sure to remove items from the autocompelte dropdown if they have
          * already been added to the model, and allowDuplicates is false

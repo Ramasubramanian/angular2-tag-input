@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
 export class AppComponent {
   public tags = ['Car', 'Bus', 'Train'];
   public autocompleteTags = [];
+  public autocompleteTagsWithCharLimit = [];
   public autocompleteItems = [
     'Banana',
     'Orange',
@@ -16,4 +17,8 @@ export class AppComponent {
     'Potato',
     'Peach'
   ];
+
+  checkLength(length: number): (string) => boolean {
+    return (item: string) =>  item.length >= length;
+  }  
 }

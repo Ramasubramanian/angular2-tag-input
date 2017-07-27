@@ -31,3 +31,23 @@
 		{{autocompleteTags | json}}
 	</pre>
 </div>
+<br><br><br><br>
+
+<h2>AutoComplete Tag Input (minimum 3 characters to start search):</h2>
+<h3>Tag must belong to autocomplete list.</h3>
+<div>
+	<rl-tag-input
+    [addOnBlur]="false"
+    [autocomplete]="true"
+    [autocompleteItems]="autocompleteItems"
+    [(ngModel)]="autocompleteTagsWithCharLimit"
+    [searchFilterPredicate]="checkLength(3)"
+    placeholder="Testing placeholder">
+  </rl-tag-input>
+</div>
+<div>
+	<h4>Bound List:</h4>
+	<pre>
+		{{autocompleteTags | json}}
+	</pre>
+</div>
