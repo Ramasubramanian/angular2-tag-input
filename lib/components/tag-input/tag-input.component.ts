@@ -116,7 +116,7 @@ export class TagInputComponent implements ControlValueAccessor, OnDestroy, OnIni
   @Input() autocompleteSelectFirstItem: boolean = true;
   @Input() pasteSplitPattern: string = ',';
   @Input() placeholder: string = 'Add a tag';
-  @Input() searchFilterPredicate: (string) => boolean = (item) => true;
+  @Input() searchFilterPredicate: (string) => boolean = (searchTerm) => true;
   @Output('addTag') addTag: EventEmitter<string> = new EventEmitter<string>();
   @Output('removeTag') removeTag: EventEmitter<string> = new EventEmitter<string>();
   @ViewChild('tagInputElement') tagInputElement: ElementRef;
